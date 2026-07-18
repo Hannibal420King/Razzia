@@ -6,7 +6,8 @@ const vortexOrigin = process.env.VORTEX_PUBLIC_URL?.trim()
 const sdkUrl = process.env.VORTEX_SDK_URL?.trim()
 
 const isLocalHost = (hostname) =>
-  ["localhost", "127.0.0.1", "[::1]"].includes(hostname)
+  ["localhost", "127.0.0.1", "[::1]"].includes(hostname) ||
+  hostname.endsWith(".localhost")
 
 const validate = () => {
   if (!vortexOrigin && !sdkUrl) {

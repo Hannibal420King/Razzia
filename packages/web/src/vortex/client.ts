@@ -85,7 +85,8 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === "object" && !Array.isArray(value)
 
 const isLocalHost = (hostname: string): boolean =>
-  ["localhost", "127.0.0.1", "[::1]"].includes(hostname)
+  ["localhost", "127.0.0.1", "[::1]"].includes(hostname) ||
+  hostname.endsWith(".localhost")
 
 export const parseVortexRuntimeConfig = (
   input: unknown,

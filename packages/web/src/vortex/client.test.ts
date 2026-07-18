@@ -65,6 +65,18 @@ describe("Vortex runtime config", () => {
       sdkUrl: "https://vortex.example.com/sdk/v1/vortex-game-sdk.js",
     })
 
+    expect(
+      parseVortexRuntimeConfig({
+        enabled: true,
+        vortexOrigin: "http://vortex.localhost:8180",
+        sdkUrl: "http://vortex.localhost:8180/sdk/v1/vortex-game-sdk.js",
+      }),
+    ).toEqual({
+      enabled: true,
+      vortexOrigin: "http://vortex.localhost:8180",
+      sdkUrl: "http://vortex.localhost:8180/sdk/v1/vortex-game-sdk.js",
+    })
+
     expect(() =>
       parseVortexRuntimeConfig({
         enabled: true,
