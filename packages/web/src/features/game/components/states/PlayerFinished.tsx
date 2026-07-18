@@ -1,5 +1,7 @@
 import type { CommonStatusDataMap } from "@razzia/common/types/game/status"
 import { usePlayerStore } from "@razzia/web/features/game/stores/player"
+import { trackVortexEventOnce } from "@razzia/web/vortex/client"
+import { useEffect } from "react"
 import { useTranslation } from "react-i18next"
 
 interface Props {
@@ -7,7 +9,7 @@ interface Props {
 }
 
 const PlayerFinished = ({ data: { rank, subject } }: Props) => {
-  const { player } = usePlayerStore()
+  const { gameId, player } = usePlayerStore()
   const { t } = useTranslation()
 
   const rankKeyMap: Record<number, string> = {
@@ -17,6 +19,17 @@ const PlayerFinished = ({ data: { rank, subject } }: Props) => {
   }
   const rankKey =
     typeof rank === "number" ? (rankKeyMap[rank] ?? "game:rank.other") : null
+
+  useEffect(() => {
+    if (!gameId || typeof rank !== "number") {
+      return
+    }
+
+    void trackVortexEventOnce(
+      { key: "quiz.completed", attributes: { winner: rank === 1 } },
+      gameId,
+    )
+  }, [gameId, rank])
 
   return (
     <div className="flex h-full flex-1 flex-col items-center justify-center gap-4 px-4">

@@ -1,5 +1,6 @@
 {
   "name": "@razzia/common",
+  "license": "MIT",
   "type": "module",
   "dependencies": {
     "socket.io": "^4.8.3",

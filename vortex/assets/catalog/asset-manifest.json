@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "1.0",
+  "game": {
+    "slug": "razzia",
+    "name": "Razzia"
+  },
+  "status": "complete-verified",
+  "assets": [
+    {
+      "kind": "ICON",
+      "filename": "icon.png",
+      "width": 1024,
+      "height": 1024,
+      "byteSize": 1578135,
+      "altText": "An orange quiz buzzer, blank answer cards, and a magenta energy bolt on a dark background.",
+      "sha256": "a0861676cf053188e514e46a3db9ac96a9fda04f20ea5e2327434f153852e094",
+      "generationPrompt": "Create one original premium square game icon for the open-source browser quiz game Razzia. Square 1:1 composition: a bold orange quiz buzzer and a small fan of abstract blank answer cards, with a magenta lightning-bolt energy accent and a few gold confetti shapes on a deep charcoal background, energetic competitive party-game feel, polished dimensional illustration, high contrast and readable at small size, centered with generous safe padding for circular and rounded-square crops. CRITICAL: all cards must be blank and include no typography. Absolutely no words, letters, numbers, punctuation, titles, logos, watermarks, borders, UI screenshots, brands, trademarks, or copied artwork. Suitable for final 1024x1024 PNG.",
+      "provenance": {
+        "type": "GENERATED_ORIGINAL",
+        "upstreamReference": null,
+        "creator": "Hannibal420King",
+        "upstreamArtworkUsed": false,
+        "reviewStatus": "VISUALLY_APPROVED"
+      },
+      "license": {
+        "identifier": "LicenseRef-Hannibal420King-Vortex-Original",
+        "copyrightHolder": "Hannibal420King",
+        "notes": "Project-owned original promotional artwork; no upstream Razzia artwork was used."
+      }
+    },
+    {
+      "kind": "CARD",
+      "filename": "card.webp",
+      "width": 1536,
+      "height": 864,
+      "byteSize": 176812,
+      "altText": "A glowing orange quiz buzzer and colorful blank answer pads fill an energetic game-show stage.",
+      "sha256": "4956a3b091ae76b4d3402ca126638413e9d8a8d6a2e8e9a4f2068276cfeff0c0",
+      "generationPrompt": "Create one original cinematic 16:9 promotional card artwork for the open-source browser quiz game Razzia, intended for final 1536x864 WebP. An energetic premium quiz stage with a centered glowing orange buzzer, several blank colorful answer cards arranged around it, vivid orange and magenta lights, gold and cyan confetti, dark audience silhouettes and polished game-show atmosphere. Keep the buzzer and cards centered with wide safe crop margins. CRITICAL: cards and scene contain zero typography. Absolutely no words, letters, numbers, punctuation, title, logos, Vortex branding, watermarks, borders, UI screenshots, brands, trademarks, or copied artwork.",
+      "provenance": {
+        "type": "GENERATED_ORIGINAL",
+        "upstreamReference": null,
+        "creator": "Hannibal420King",
+        "upstreamArtworkUsed": false,
+        "reviewStatus": "VISUALLY_APPROVED"
+      },
+      "license": {
+        "identifier": "LicenseRef-Hannibal420King-Vortex-Original",
+        "copyrightHolder": "Hannibal420King",
+        "notes": "Project-owned original promotional artwork; no upstream Razzia artwork was used."
+      }
+    },
+    {
+      "kind": "HERO",
+      "filename": "hero.webp",
+      "width": 2048,
+      "height": 896,
+      "byteSize": 78664,
+      "altText": "A glowing quiz buzzer and blank cards occupy the right of a dark confetti-filled banner.",
+      "sha256": "5e5af644ef1cf45a9931d578f57232eccc22c336713e3a2ea848f9dfb8f4e2f2",
+      "generationPrompt": "Create one original ultra-wide hero banner for the open-source browser quiz game Razzia, composed for final 2048x896 (16:7) WebP. Preserve the LEFT half as dark, low-detail charcoal-to-deep-purple negative space for title and controls. On the RIGHT third, show an energetic quiz podium with a glowing orange buzzer, a fan of completely blank answer cards, magenta stage light, gold and cyan confetti, premium polished game-show energy and crisp safe cropping. CRITICAL: zero typography anywhere. Absolutely no words, letters, numbers, punctuation, title, logos, Vortex branding, watermarks, borders, UI screenshots, brands, trademarks, or copied artwork.",
+      "provenance": {
+        "type": "GENERATED_ORIGINAL",
+        "upstreamReference": null,
+        "creator": "Hannibal420King",
+        "upstreamArtworkUsed": false,
+        "reviewStatus": "VISUALLY_APPROVED"
+      },
+      "license": {
+        "identifier": "LicenseRef-Hannibal420King-Vortex-Original",
+        "copyrightHolder": "Hannibal420King",
+        "notes": "Project-owned original promotional artwork; no upstream Razzia artwork was used."
+      }
+    },
+    {
+      "kind": "SCREENSHOT",
+      "filename": "screenshots/01.webp",
+      "width": 1920,
+      "height": 1080,
+      "byteSize": 85920,
+      "altText": "Manager view of question three showing one response on the correct answer and zero on the alternative.",
+      "sha256": "d1e99646d81426d492c8a2ff67e883568741936628a89ee8cbb5bff9a76a0fa2",
+      "generationPrompt": null,
+      "provenance": {
+        "type": "REAL_GAMEPLAY_CAPTURE",
+        "upstreamReference": "http://127.0.0.1:38120/",
+        "capture": "Playwright at 1920x1080 from the running hardened razzia:vortex-v2-test standalone image"
+      },
+      "license": {
+        "identifier": "MIT AND ISC",
+        "copyrightHolder": "Razzia contributors",
+        "notes": "Truthful gameplay capture from the MIT-licensed Razzia fork with the ISC-declared socket workspace preserved; source and license notices remain in the repository."
+      }
+    },
+    {
+      "kind": "SCREENSHOT",
+      "filename": "screenshots/02.webp",
+      "width": 1920,
+      "height": 1080,
+      "byteSize": 85652,
+      "altText": "Manager view of the final multiple-choice question with four colored answers, 18 seconds remaining, and two connected players.",
+      "sha256": "90647bb8b38cdda4a5b20af5f38b5d555b663a9f662b8c7cb43ba559263fc0f7",
+      "generationPrompt": null,
+      "provenance": {
+        "type": "REAL_GAMEPLAY_CAPTURE",
+        "upstreamReference": "http://127.0.0.1:38120/",
+        "capture": "Playwright at 1920x1080 from the running hardened razzia:vortex-v2-test standalone image"
+      },
+      "license": {
+        "identifier": "MIT AND ISC",
+        "copyrightHolder": "Razzia contributors",
+        "notes": "Truthful gameplay capture from the MIT-licensed Razzia fork with the ISC-declared socket workspace preserved; source and license notices remain in the repository."
+      }
+    },
+    {
+      "kind": "SCREENSHOT",
+      "filename": "screenshots/03.webp",
+      "width": 1920,
+      "height": 1080,
+      "byteSize": 82800,
+      "altText": "Final Razzia podium with confetti, Nova first on 990 points and Orion second on zero.",
+      "sha256": "df49465524eee6250d160e73224e079135c4d7739058a668c12fb9095cf3381c",
+      "generationPrompt": null,
+      "provenance": {
+        "type": "REAL_GAMEPLAY_CAPTURE",
+        "upstreamReference": "http://127.0.0.1:38120/",
+        "capture": "Playwright at 1920x1080 from the running hardened razzia:vortex-v2-test standalone image"
+      },
+      "license": {
+        "identifier": "MIT AND ISC",
+        "copyrightHolder": "Razzia contributors",
+        "notes": "Truthful gameplay capture from the MIT-licensed Razzia fork with the ISC-declared socket workspace preserved; source and license notices remain in the repository."
+      }
+    }
+  ]
+}

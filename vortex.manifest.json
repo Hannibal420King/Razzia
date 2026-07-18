@@ -1,0 +1,149 @@
+{
+  "schemaVersion": "1.0",
+  "revision": 1,
+  "requiredScopes": [
+    "identity.basic",
+    "play.write",
+    "events.write",
+    "gamification.read",
+    "rewards.read"
+  ],
+  "optionalScopes": [],
+  "events": [
+    {
+      "key": "lobby.joined",
+      "version": 1,
+      "displayName": "Lobby joined",
+      "description": "The player joined a Razzia quiz lobby.",
+      "valueType": "COUNTER",
+      "aggregation": "SUM",
+      "source": "GAME_SESSION",
+      "attributes": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      }
+    },
+    {
+      "key": "quiz.started",
+      "version": 1,
+      "displayName": "Quiz started",
+      "description": "A joined Razzia quiz started for the player.",
+      "valueType": "COUNTER",
+      "aggregation": "SUM",
+      "source": "GAME_SESSION",
+      "attributes": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      }
+    },
+    {
+      "key": "question.answered",
+      "version": 1,
+      "displayName": "Question answered",
+      "description": "The Razzia server accepted and scored the player's answer.",
+      "valueType": "COUNTER",
+      "aggregation": "SUM",
+      "source": "GAME_SESSION",
+      "attributes": {
+        "type": "object",
+        "properties": {
+          "correct": {
+            "type": "boolean"
+          }
+        },
+        "required": ["correct"],
+        "additionalProperties": false
+      }
+    },
+    {
+      "key": "quiz.completed",
+      "version": 1,
+      "displayName": "Quiz completed",
+      "description": "The player reached the completed state of a Razzia quiz.",
+      "valueType": "COUNTER",
+      "aggregation": "SUM",
+      "source": "GAME_SESSION",
+      "attributes": {
+        "type": "object",
+        "properties": {
+          "winner": {
+            "type": "boolean"
+          }
+        },
+        "required": ["winner"],
+        "additionalProperties": false
+      }
+    }
+  ],
+  "notificationTemplates": [],
+  "presenceStates": [],
+  "invitePaths": ["/"],
+  "deployment": {
+    "schemaVersion": "1.0",
+    "gateway": {
+      "service": "app",
+      "port": "http"
+    },
+    "services": [
+      {
+        "name": "app",
+        "image": {
+          "source": "APP"
+        },
+        "environment": {},
+        "vortexEnvironment": true,
+        "ports": [
+          {
+            "name": "http",
+            "containerPort": 3000,
+            "protocol": "TCP",
+            "exposure": "INTERNAL"
+          }
+        ],
+        "healthCheck": {
+          "protocol": "HTTP",
+          "port": "http",
+          "path": "/healthz",
+          "initialDelaySeconds": 3,
+          "intervalSeconds": 5,
+          "timeoutSeconds": 3,
+          "retries": 12
+        },
+        "resources": {
+          "cpuCores": 1,
+          "memoryMb": 512,
+          "pidsLimit": 256
+        },
+        "mounts": [
+          {
+            "volume": "config",
+            "target": "/app/config",
+            "readOnly": false
+          },
+          {
+            "volume": "tmp",
+            "target": "/tmp",
+            "readOnly": false
+          }
+        ],
+        "dependsOn": [],
+        "readOnlyRootfs": true,
+        "stopGraceSeconds": 20
+      }
+    ],
+    "volumes": [
+      {
+        "name": "config",
+        "kind": "PERSISTENT"
+      },
+      {
+        "name": "tmp",
+        "kind": "EPHEMERAL"
+      }
+    ]
+  }
+}

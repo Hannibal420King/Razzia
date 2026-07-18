@@ -2,7 +2,9 @@ import type { CommonStatusDataMap } from "@razzia/common/types/game/status"
 import CricleCheck from "@razzia/web/features/game/components/icons/CricleCheck"
 import CricleXmark from "@razzia/web/features/game/components/icons/CricleXmark"
 import { usePlayerStore } from "@razzia/web/features/game/stores/player"
+import { useQuestionStore } from "@razzia/web/features/game/stores/question"
 import { SFX } from "@razzia/web/features/game/utils/constants"
+import { trackVortexEventOnce } from "@razzia/web/vortex/client"
 import { useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import useSound from "use-sound"
@@ -14,7 +16,8 @@ interface Props {
 const Result = ({
   data: { correct, message, points, myPoints, rank, aheadOfMe },
 }: Props) => {
-  const player = usePlayerStore()
+  const { gameId, updatePoints } = usePlayerStore()
+  const { questionStates } = useQuestionStore()
   const { t } = useTranslation()
   const rankKeyMap: Record<number, string> = {
     1: "game:rank.1",
@@ -28,11 +31,22 @@ const Result = ({
   })
 
   useEffect(() => {
-    player.updatePoints(myPoints)
+    updatePoints(myPoints)
 
     sfxResults()
     // oxlint-disable-next-line
   }, [sfxResults])
+
+  useEffect(() => {
+    if (!gameId || !questionStates) {
+      return
+    }
+
+    void trackVortexEventOnce(
+      { key: "question.answered", attributes: { correct } },
+      `${gameId}:${questionStates.current}`,
+    )
+  }, [correct, gameId, questionStates])
 
   return (
     <section className="anim-show relative mx-auto flex w-full max-w-7xl flex-1 flex-col items-center justify-center">

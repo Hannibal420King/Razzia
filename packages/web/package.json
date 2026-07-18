@@ -1,11 +1,14 @@
 {
   "name": "@razzia/web",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "start": "vite preview",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "smoke:socket": "node scripts/socket-smoke.mjs",
+    "test": "vitest run"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -46,6 +49,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.3",
     "typescript": "~6.0.3",
-    "vite": "^8.1.0"
+    "vite": "^8.1.0",
+    "vitest": "^4.0.18"
   }
 }

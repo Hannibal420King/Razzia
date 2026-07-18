@@ -1,9 +1,11 @@
 import { EVENTS } from "@razzia/common/constants"
 import type { CommonStatusDataMap } from "@razzia/common/types/game/status"
 import { useEvent } from "@razzia/web/features/game/contexts/socket-context"
+import { usePlayerStore } from "@razzia/web/features/game/stores/player"
 import { SFX } from "@razzia/web/features/game/utils/constants"
+import { trackVortexEventOnce } from "@razzia/web/vortex/client"
 import clsx from "clsx"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import useSound from "use-sound"
 
 interface Props {
@@ -13,6 +15,7 @@ interface Props {
 const Start = ({ data: { time, subject } }: Props) => {
   const [showTitle, setShowTitle] = useState(true)
   const [cooldown, setCooldown] = useState(time)
+  const { gameId, player } = usePlayerStore()
 
   const [sfxBoump] = useSound(SFX.BOUMP_SOUND, {
     volume: 0.2,
@@ -27,6 +30,12 @@ const Start = ({ data: { time, subject } }: Props) => {
     sfxBoump()
     setCooldown(sec)
   })
+
+  useEffect(() => {
+    if (gameId && player) {
+      void trackVortexEventOnce({ key: "quiz.started", attributes: {} }, gameId)
+    }
+  }, [gameId, player])
 
   return (
     <section className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col items-center justify-center">

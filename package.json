@@ -1,6 +1,7 @@
 {
   "name": "razzia",
   "version": "3.1.0",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "dotenv -e .env -- pnpm -r --parallel dev",
@@ -12,7 +13,8 @@
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "format": "prettier --check . --log-level warn",
-    "format:fix": "prettier --write . --log-level warn"
+    "format:fix": "prettier --write . --log-level warn",
+    "test": "pnpm -r --if-present run test"
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "latest",

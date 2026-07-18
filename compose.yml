@@ -1,7 +1,39 @@
 services:
   razzia:
-    image: ralex91/razzia:latest
+    build:
+      context: .
+    image: hannibal420king/razzia:vortex-v2
     ports:
       - "3000:3000"
+    environment:
+      VORTEX_PUBLIC_URL: ${VORTEX_PUBLIC_URL:-}
+      VORTEX_SDK_URL: ${VORTEX_SDK_URL:-}
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=32m,uid=10001,gid=10001
     volumes:
-      - ./config:/app/config
+      - razzia-config:/app/config
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "wget",
+          "-q",
+          "-T",
+          "2",
+          "-O",
+          "-",
+          "http://127.0.0.1:3000/healthz",
+        ]
+      interval: 10s
+      timeout: 3s
+      start_period: 15s
+      retries: 6
+    restart: unless-stopped
+
+volumes:
+  razzia-config:

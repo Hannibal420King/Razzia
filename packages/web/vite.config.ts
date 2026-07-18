@@ -38,6 +38,13 @@ const serveBranding = (
   const filePath = path.join(brandingDir, relative)
 
   if (!filePath.startsWith(brandingDir) || !fs.existsSync(filePath)) {
+    if (relative === "theme.json") {
+      res.setHeader("Content-Type", "application/json")
+      res.end("{}")
+
+      return
+    }
+
     res.statusCode = 404
     res.end()
 
@@ -63,6 +70,54 @@ const brandingServer = (): Plugin => ({
   },
 })
 
+const serveVortexConfig = (
+  req: IncomingMessage,
+  res: ServerResponse,
+  next: () => void,
+): void => {
+  if (req.url?.split("?")[0] !== "/api/vortex/config") {
+    next()
+
+    return
+  }
+
+  const vortexOrigin = process.env.VORTEX_PUBLIC_URL?.trim()
+  const sdkUrl = process.env.VORTEX_SDK_URL?.trim()
+
+  res.setHeader("Content-Type", "application/json")
+  res.setHeader("Cache-Control", "no-store")
+
+  if (Boolean(vortexOrigin) !== Boolean(sdkUrl)) {
+    res.statusCode = 500
+    res.end(
+      JSON.stringify({
+        error:
+          "VORTEX_PUBLIC_URL and VORTEX_SDK_URL must be configured together",
+      }),
+    )
+
+    return
+  }
+
+  res.end(
+    JSON.stringify(
+      vortexOrigin && sdkUrl
+        ? { enabled: true, vortexOrigin, sdkUrl }
+        : { enabled: false },
+    ),
+  )
+}
+
+const vortexRuntimeServer = (): Plugin => ({
+  name: "razzia-vortex-runtime-server",
+  configureServer(server) {
+    server.middlewares.use(serveVortexConfig)
+  },
+  configurePreviewServer(server) {
+    server.middlewares.use(serveVortexConfig)
+  },
+})
+
 export default defineConfig({
   define: {
     __APP_VERSION__: JSON.stringify(version),
@@ -77,6 +132,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
     brandingServer(),
+    vortexRuntimeServer(),
   ],
   resolve: {
     alias: {

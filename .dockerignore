@@ -13,6 +13,7 @@ release.json
 .vscode
 docs
 *.md
+!VORTEX_SOURCE_AND_ATTRIBUTION.md
 event.json
 compose.yml
 .prettierignore

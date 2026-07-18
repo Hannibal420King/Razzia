@@ -5,6 +5,7 @@ import { socketClient } from "@razzia/web/features/game/contexts/socket-context"
 import "@razzia/web/i18n"
 import "@razzia/web/index.css"
 import { routeTree } from "@razzia/web/route.gen"
+import { RazziaVortexProvider } from "@razzia/web/vortex/VortexProvider"
 import { RouterProvider, createRouter } from "@tanstack/react-router"
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
@@ -27,7 +28,9 @@ applyBranding(await loadBranding())
 
 createRoot(root).render(
   <StrictMode>
-    <RouterProvider router={router} />
-    <Toaster />
+    <RazziaVortexProvider>
+      <RouterProvider router={router} />
+      <Toaster />
+    </RazziaVortexProvider>
   </StrictMode>,
 )

@@ -113,6 +113,29 @@ pnpm start
 
 `managerPassword` **must be changed** from the default `"PASSWORD"` value, otherwise manager access is blocked.
 
+## Vortex v2 integration
+
+The `vortex-v2` branch includes a hosted Vortex Game SDK adapter and a
+versioned `vortex.manifest.json`. A managed deployment injects
+`VORTEX_PUBLIC_URL` and `VORTEX_SDK_URL`; the container exposes only those two
+safe public values from `/api/vortex/config`. Server credentials and event
+signing secrets are never included in the browser response or bundle.
+
+Vortex players use their app-scoped display identity as their ephemeral Razzia
+name. The SDK owns play-session heartbeats, and the visible **Return to Vortex**
+action explicitly ends the play session with the `quit` reason before
+navigating back. When the two public Vortex variables are absent, Razzia keeps
+its normal standalone username flow.
+
+The manifest declares the truthful client-session events `lobby.joined`,
+`quiz.started`, `question.answered`, and `quiz.completed`. The deployment stack
+runs Nginx and Socket.IO together behind the APP gateway on port 3000, persists
+`/app/config`, and uses an ephemeral `/tmp` mount so the remaining root
+filesystem can stay read-only.
+
+Fork/source and license details are recorded in
+[`VORTEX_SOURCE_AND_ATTRIBUTION.md`](VORTEX_SOURCE_AND_ATTRIBUTION.md).
+
 ## 📚 Documentation
 
 - [Configuration](docs/configuration.md): manager password, via the `config` folder.
