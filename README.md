@@ -113,6 +113,8 @@ pnpm start
 
 `managerPassword` **must be changed** from the default `"PASSWORD"` value, otherwise manager access is blocked.
 
+The Vortex image can provision and rotate this value without replacing quiz or result data. Configure `RAZZIA_MANAGER_PASSWORD` as a Vortex runtime secret with a printable 16-128 character value; the entrypoint writes it atomically to the persistent `config/game.json` before the socket service starts.
+
 ## Vortex v2 integration
 
 The `vortex-v2` branch includes a hosted Vortex Game SDK adapter and a

@@ -32,7 +32,7 @@ COPY docker/supervisord.conf /etc/supervisord.conf
 
 COPY --chown=app:app --from=builder /app/packages/web/dist /app/web
 COPY --chown=app:app --from=builder /app/packages/socket/dist/index.cjs /app/socket/index.cjs
-COPY --chown=app:app docker/entrypoint.sh docker/write-vortex-config.mjs /app/runtime/
+COPY --chown=app:app docker/entrypoint.sh docker/write-manager-config.mjs docker/write-vortex-config.mjs /app/runtime/
 COPY --chown=app:app LICENSE VORTEX_SOURCE_AND_ATTRIBUTION.md /usr/share/licenses/razzia/
 
 RUN chmod 0555 /app/runtime/entrypoint.sh

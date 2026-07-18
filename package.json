@@ -14,7 +14,7 @@
     "lint:fix": "oxlint --fix",
     "format": "prettier --check . --log-level warn",
     "format:fix": "prettier --write . --log-level warn",
-    "test": "pnpm -r --if-present run test"
+    "test": "node --test docker/*.test.mjs && pnpm -r --if-present run test"
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "latest",
